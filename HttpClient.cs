@@ -67,7 +67,8 @@ namespace ConsoleApp
                 "    {\n" +
                 "        \"Id\": \"1\",\n" +
                 "        \"Name\": \"Name\",\n" +
-                "    }\n]", Encoding.UTF8, "application/json");
+                "    }\n" +
+                "]", Encoding.UTF8, "application/json");
             var response = client.PostAsync(apiUrl, content).Result;
             var jsonString = response.Content.ReadAsStringAsync().Result;
 
