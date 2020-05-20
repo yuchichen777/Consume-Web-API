@@ -10,7 +10,7 @@ namespace ConsoleApp
     {
         private readonly string baseUrl = "http://localhost/api";
 
-        //Content-Type: application/x-www-form-urlencoded
+        //x-www-form-urlencoded
         public ResponseModel<T> Post()
         {
             var apiUrl = baseUrl + "/Post";
