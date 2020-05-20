@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ConsoleApp
 {
-    public class HttpClient
+    public class HttpClientApiService : IApiService
     {
         private readonly string baseUrl = "http://localhost/api";
 
