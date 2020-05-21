@@ -60,15 +60,18 @@ namespace ConsoleApp
         {
             var apiUrl = baseUrl + "/Post";
             var bearer = "Bearer " + token;
+            
+            var requestModel = new RequestModel
+            {
+                Id = 1,
+                Name = "Name"
+            };
+
+            var requestJsonString = JsonConvert.SerializeObject(requestModel);
+            
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", bearer);
-            var content = new StringContent(
-                "[\n" +
-                "    {\n" +
-                "        \"Id\": \"1\",\n" +
-                "        \"Name\": \"Name\",\n" +
-                "    }\n" +
-                "]", Encoding.UTF8, "application/json");
+            var content = new StringContent(requestJsonString, Encoding.UTF8, "application/json");
             var response = client.PostAsync(apiUrl, content).Result;
             var jsonString = response.Content.ReadAsStringAsync().Result;
 
