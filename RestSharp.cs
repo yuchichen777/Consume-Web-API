@@ -63,19 +63,20 @@ namespace ConsoleApp
             var apiUrl = baseUrl + "/Post";
             var bearer = "Bearer " + token;
 
+            var requestModel = new RequestModel
+            {
+                Id = 1,
+                Name = "Name"
+            };
+
+            var requestJsonString = JsonConvert.SerializeObject(requestModel);
+
             var client = new RestClient(apiUrl);
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json; charset=utf-8");
             request.AddHeader("Authorization", bearer);
-            request.AddParameter(
-                "application/json; charset=utf-8",
-                "[\n" +
-                "    {\n" +
-                "        \"Id\": \"1\",\n" +
-                "        \"Name\": \"Name\",\n" +
-                "    }\n" +
-                "]", ParameterType.RequestBody);
+            request.AddParameter(requestJsonString, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             var jsonString = response.Content;
 
